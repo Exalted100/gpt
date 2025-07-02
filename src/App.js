@@ -13,7 +13,6 @@ function App() {
   const [chatHistory, setChatHistory] = useState([
     { role: "system", content: "You are a helpful assistant." },
   ]);
-  const [chatResponse, setChatResponse] = useState("");
   const [imagePrompt, setImagePrompt] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -70,10 +69,8 @@ function App() {
         messages: newHistory,
       });
       const reply = completion.choices[0].message.content;
-      setChatResponse(reply);
       setChatHistory([...newHistory, { role: "assistant", content: reply }]);
     } catch (err) {
-      setChatResponse("");
       setError("Error: " + err.message);
     }
     setChatInput("");
